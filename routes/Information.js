@@ -1,10 +1,15 @@
 const {UserInfo} = require('../models/User_Info');
 const {CompanyInfo} = require('../models/Company_Info');
 const auth = require('../middleware/auth');
+const file = require('../middleware/image');
+
 module.exports = (app) =>{
 
+   
     //post user information
     app.post('/api/postuserinfo',auth, (req,res) =>{
+   
+        
         new UserInfo({
             user :req.user._id,  
             country: req.body.country,
@@ -60,7 +65,6 @@ module.exports = (app) =>{
         //Get user info by ID
         app.get('/api/getuserinfo',auth, async (req,res) =>{
             const id = req.query.id;
-          
            const info= await UserInfo.findOne({'user' : id});
             if(!info) return res.status(401).send('not found');
             res.send(info);

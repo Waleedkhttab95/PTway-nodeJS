@@ -5,10 +5,10 @@
   "main": "index.js",
   "engines": {
     "node": "8.1.1",
-    "npm" : "5.0.3"
+    "npm": "5.0.3"
   },
   "scripts": {
-    "start" : "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
@@ -18,11 +18,13 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "cookie-session": "^2.0.0-beta.3",
+    "cron": "^1.6.0",
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.7",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0"

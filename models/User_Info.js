@@ -21,7 +21,7 @@ const user_infoSchema = new Schema({
     type: String,
     required:true
     },
-    
+    imagePath: String,
     education_degree:{
         type: String,
         required:true

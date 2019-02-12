@@ -7,7 +7,7 @@ module.exports = (app) => {
 
     // Add Company Sector
     app.post('/api/postsector', (req,res) =>{
-
+    
         new Sector({
             sectorName: req.body.sectorName
         }).save()
@@ -33,6 +33,7 @@ module.exports = (app) => {
     // Get all sectors
 
     app.get('/api/getsectors', (req,res) =>{
+        
        Sector.find({}, function(error,sectors) {
            var map = {};
 
@@ -158,6 +159,26 @@ module.exports = (app) => {
             res.send(map);
         })
      });
+
+        //DELETE project by Id
+        app.delete('/api/deleteproject', async (req,res) =>{
+            const id = req.query.id;
+          
+           const project= await Project.findByIdAndDelete(id);
+            if(!project) return res.status(401).send('not found');
+            res.send(project);
+        });
+
+        //DELETE job by Id
+        app.delete('/api/deletejob', async (req,res) =>{
+            const id = req.query.id;
+          
+           const job= await JobAd.findByIdAndDelete(id);
+            if(!job) return res.status(401).send('not found');
+            res.send(job);
+        });
+
+         
 
 }
     

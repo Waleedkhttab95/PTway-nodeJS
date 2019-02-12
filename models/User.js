@@ -28,11 +28,12 @@ password: {
     type:String,
     required: true,
     unique: false
-}
+},
+isAdmin:Boolean
 });
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id}, keys.jwtKey);
+    const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, keys.jwtKey);
 
     return token;
 }
