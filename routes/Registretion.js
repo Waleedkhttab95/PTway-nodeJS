@@ -1,5 +1,5 @@
-const { User, validate } = require('../models/User');
-const { Company, validateCompany } = require('../models/Companies');
+const { User, validate } = require('../models/Users/User');
+const { Company, validateCompany } = require('../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');

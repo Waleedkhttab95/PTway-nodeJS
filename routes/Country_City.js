@@ -1,5 +1,5 @@
-const {City} = require('../models/City');
-const {Country} = require('../models/Country');
+const {City} = require('../models/Shared/City');
+const {Country} = require('../models/Shared/Country');
 
 module.exports = (app) => {
 

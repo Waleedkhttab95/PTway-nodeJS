@@ -1,5 +1,5 @@
-const {UserInfo} = require('../models/User_Info');
-const {CompanyInfo} = require('../models/Company_Info');
+const {UserInfo} = require('../models/Users/User_Info');
+const {CompanyInfo} = require('../models/Companies/Company_Info');
 const auth = require('../middleware/auth');
 const file = require('../middleware/image');
 

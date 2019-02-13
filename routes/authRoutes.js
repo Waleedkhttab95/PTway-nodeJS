@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 const auth = require('../middleware/auth');
-const { Company ,validateCompany} = require('../models/Companies');
+const { Company ,validateCompany} = require('../models/Companies/Companies');
 const Joi = require('joi');
 
 

@@ -4,7 +4,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 
-require('./models/User');
+require('./models/Users/User');
 require('./services/passport');
 
  mongoose.connect(keys.mongoURI)
@@ -31,7 +31,7 @@ require('./routes/Registretion')(app);
 require('./routes/Companies')(app);
 require('./routes/Country_City')(app);
 require('./routes/Information')(app);
-
+require('./routes/Services')(app);
 
 
 app.use((req, res, next) => {
