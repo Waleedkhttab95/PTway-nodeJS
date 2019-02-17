@@ -1,8 +1,8 @@
-const {Sector} = require('../models/Sector');
-const {CompanySpecialist} = require('../models/CompanySpecialist');
-const {Project} = require('../models/Project');
-const {JobAd} = require('../models/Job_Ad');
-const {Contract} = require('../models/Contract');
+const {Sector} = require('../models/Companies/Sector');
+const {CompanySpecialist} = require('../models/Companies/CompanySpecialist');
+const {Project} = require('../models/Companies/Project');
+const {JobAd} = require('../models/Companies/Job_Ad');
+const {Contract} = require('../models/Companies/Contract');
 module.exports = (app) => {
 
     // Add Company Sector
@@ -76,7 +76,7 @@ module.exports = (app) => {
           // POST job Ad 
           app.post('/api/postjob', (req,res) =>{
             new JobAd({
-                
+                name : req.body.name
 
             }).save()
             .then(result =>{
@@ -180,5 +180,6 @@ module.exports = (app) => {
 
          
 
+        
 }
     

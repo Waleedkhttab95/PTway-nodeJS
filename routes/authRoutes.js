@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 const auth = require('../middleware/auth');
-const { Company ,validateCompany} = require('../models/Companies');
+const { Company ,validateCompany} = require('../models/Companies/Companies');
 const Joi = require('joi');
 
 
@@ -36,7 +36,10 @@ module.exports = (app) =>{
 
         if (!result) return res.status(400).send('Invalid email or password');
       const token = user.generateAuthToken();
-        res.send(token);
+        res.status(200).json({
+          token: token,
+          userId: user._id
+          });;
        });
        
      });
