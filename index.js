@@ -34,6 +34,7 @@ require('./routes/Information')(app);
 require('./routes/Services')(app);
 
 
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -44,6 +45,8 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, PUT, DELETE, OPTIONS"
   );
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   next();
 });
 const PORT = process.env.PORT || 5000;

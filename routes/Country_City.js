@@ -32,6 +32,7 @@ module.exports = (app) => {
       // Get all countres
 
       app.get('/api/getcountry', (req,res) =>{
+         
         Country.find({}, function(error,countres) {
             var map = {};
  
