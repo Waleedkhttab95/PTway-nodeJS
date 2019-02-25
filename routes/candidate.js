@@ -9,13 +9,13 @@ module.exports = (app) =>{
 .then (result => {res.send(result);})
 });
 
-app.get('/api/getCandiBody',async (req,res)=>{
+app.get('/api/getCandites',async (req,res)=>{
     const result = await Candidate.find();
     res.send(result);
 });
 
 app.get('/api/getOneCandi',async(req,res)=>{
-const Bresult = await Candidate.findOne({'jobAd':req.query.jobAd})
+const Bresult = await Candidate.find({'jobAd':req.query.jobAd})
 if (!Bresult) return res.status(401).send('notFound')
 res.send(Bresult);
 });

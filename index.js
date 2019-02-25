@@ -4,6 +4,8 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 
+
+
 require('./models/Users/User');
 require('./services/passport');
 
@@ -22,7 +24,6 @@ app.use(
 
 
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -32,6 +33,11 @@ require('./routes/Companies')(app);
 require('./routes/Country_City')(app);
 require('./routes/Information')(app);
 require('./routes/Services')(app);
+require('./services/updateResume')();
+
+
+
+
 
 
 

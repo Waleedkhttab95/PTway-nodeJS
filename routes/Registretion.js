@@ -1,5 +1,5 @@
 const { User, validate } = require('../models/Users/User');
-const { Company, validateCompany } = require('../models/Companies/Companies');
+const { Company } = require('../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
@@ -41,8 +41,8 @@ module.exports = (app) => {
 
   app.post('/api/companyRegistreing', async (req, res) => {
 
-    const { error } = validateCompany(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    // const { error } = validateCompany(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
 
 
     let company = await Company.findOne({ email: req.body.email });

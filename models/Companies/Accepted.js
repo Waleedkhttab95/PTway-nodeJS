@@ -9,7 +9,7 @@ const AcceptedSchema = new Schema({
 });
 
 
-const Candidate = mongoose.model('Candidates', candidatesSchema);
+const Accepted = mongoose.model('Accepted', AcceptedSchema);
 
 
-exports.Candidate = Candidate;
+exports.Accepted = Accepted;

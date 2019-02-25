@@ -76,8 +76,20 @@ module.exports = (app) => {
           // POST job Ad 
           app.post('/api/postjob', (req,res) =>{
             new JobAd({
-                name : req.body.name
-
+                contract : req.body.contract,
+                project: req.body.project,
+                job_Name: req.body.job_Name,
+                job_skills : req.body.job_skills,
+                country: req.body.country,
+                city: req.body.city,
+                public_Major: req.body.public_Major,
+                startDate: req.body.startDate,
+                work_hours: req.body.work_hours,
+                work_days: req.body.work_days,
+                salary: req.body.salary,
+                gender: req.body.gender,
+                personal_Skills: req.body.personal_Skills,
+                required_Number: req.body.required_Number
             }).save()
             .then(result =>{
                 res.send(result);
@@ -133,12 +145,21 @@ module.exports = (app) => {
             res.send(job);
         });
 
+        // get job by project
+        app.get('/api/get/jobs', async (req,res) =>{
+            const id = req.query.projectid;
+          
+           const job= await JobAd.find({project: id});
+            if(!job) return res.status(401).send('not found');
+            res.send(job);
+        });
         //Post Contract
 
         app.post('/api/postcontract', (req,res) =>{
            
             new Contract({
-                contractName: req.body.contractName
+                contractName: req.body.contractName,
+                days: req.body.days
             }).save()
             .then(result =>{
                 res.send(result);
@@ -174,8 +195,8 @@ module.exports = (app) => {
             const id = req.query.id;
           
            const job= await JobAd.findByIdAndDelete(id);
-            if(!job) return res.status(401).send('not found');
-            res.send(job);
+            if(!job) return res.status(400).send('not found');
+            res.send("Deleted !");
         });
 
          

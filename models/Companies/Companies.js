@@ -38,14 +38,14 @@ companySchema.methods.generateAuthToken = function() {
 }
 const Company = mongoose.model('companies', companySchema);
 
-function validateCompany(company) {
-    const Schema = {
-        companyName: Joi.string().max(50).required(),
-        email: Joi.string().min(5).max(255).required().email(),
-        password: Joi.string().min(5).required(),
-    };
+// function validateCompany(company) {
+//     const Schema = {
+//         companyName: Joi.string().max(50).required(),
+//         email: Joi.string().min(5).max(255).required().email(),
+//         password: Joi.string().min(5).required(),
+//     };
 
-    return Joi.validate(company, Schema);
-}
+//     return Joi.validate(company, Schema);
+// }
 exports.Company = Company;
-exports.validateCompany = validateCompany;
+//exports.validateCompany = validateCompany;

@@ -7,11 +7,11 @@ module.exports = (app) =>{
 
    
     //post user information
-    app.post('/api/postuserinfo',auth, (req,res) =>{
+    app.post('/api/postuserinfo', (req,res) =>{
    
         
         new UserInfo({
-            user :req.user._id,  
+            user :req.body.user,  
             country: req.body.country,
             study_status: req.body.study_status,
             study_degree: req.body.study_degree,

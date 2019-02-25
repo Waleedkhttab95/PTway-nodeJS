@@ -4,7 +4,8 @@ const {Schema} = mongoose;
 
 const contractSchema = new Schema({
 
-contractName : String
+contractName : String,
+days : Number
 });
 
 
