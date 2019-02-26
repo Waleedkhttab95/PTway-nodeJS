@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const company_infoSchema = new Schema({
+    key : {type:String},
     company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
     country:  {type: mongoose.Schema.Types.ObjectId, ref:'Country'},
 

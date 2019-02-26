@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const endDateSchema = new Schema({
-
+key : {type:String},
 endDate : {type: Date },
 jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'Job_Ad'},
 workHours: {type: Number}

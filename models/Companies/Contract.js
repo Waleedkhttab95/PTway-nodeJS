@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const contractSchema = new Schema({
-
+key : {type:String},
 contractName : String,
 days : Number
 });

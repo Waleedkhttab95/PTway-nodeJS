@@ -6,6 +6,7 @@ const candidatesSchema = new Schema({
 
  candidateName : {type: mongoose.Schema.Types.ObjectId, ref:'User'},
  jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'Job_Ad'},
+ key : {type:String}
 });
 
 

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const projectSchema = new Schema({
-
+key : {type:String},
 projectName : {type: String , required:true},
 projectDescription : {type:String, required: true},
 status : {type: Boolean , default: true},

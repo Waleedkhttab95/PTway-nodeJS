@@ -32,31 +32,18 @@ module.exports = (app) => {
 
     // Get all sectors
 
-    app.get('/api/getsectors', (req,res) =>{
+    app.get('/api/getsectors', async(req,res) =>{
         
-       Sector.find({}, function(error,sectors) {
-           var map = {};
-
-           sectors.forEach(function(sector) {
-               map[sector._id] = sector;
-           })
-
-           res.send(map);
+        const sectors = await Sector.find();
+           res.status(200).send(sectors);
        })
-    });
+    
 
      // Get all specialization
 
-     app.get('/api/getspec', (req,res) =>{
-        CompanySpecialist.find({}, function(error,specs) {
-            var map = {};
- 
-            specs.forEach(function(spec) {
-                map[spec._id] = spec;
-            })
- 
-            res.send(map);
-        })
+     app.get('/api/getspec', async(req,res) =>{
+        const Cs = await CompanySpecialist.find();
+        res.status(200).send(Cs);
      });
 
      // POST PROJECT 
@@ -99,37 +86,25 @@ module.exports = (app) => {
 
           // Get all projects
 
-     app.get('/api/getprojects', (req,res) =>{
-        Project.find({}, function(error,projects) {
-            var map = {};
- 
-            projects.forEach(function(project) {
-                map[project._id] = project;
-            })
- 
-            res.send(map);
-        })
-     });
+     app.get('/api/getprojects', async(req,res) =>{
+         
+        const proj = await Project.find();
+            res.send(proj);
+        });
+    
 
 
        // Get all jobs Ad 
 
-       app.get('/api/getjobs', (req,res) =>{
-        JobAd.find({}, function(error,jobs) {
-            var map = {};
- 
-            jobs.forEach(function(job) {
-                map[job._id] = job;
-            })
- 
-            res.send(map);
+       app.get('/api/getjobs', async(req,res) =>{
+           const jobAdd = await JobAd.find();
+            res.send(jobAdd);
         })
-     });
+ 
 
         //Get project by Id
         app.get('/api/getproject', async (req,res) =>{
             const id = req.query.id;
-          
            const project= await Project.findById(id);
             if(!project) return res.status(401).send('not found');
             res.send(project);
@@ -169,17 +144,11 @@ module.exports = (app) => {
 
             // Get all contracts
 
-     app.get('/api/getcontracts', (req,res) =>{
-        Contract.find({}, function(error,contracts) {
-            var map = {};
- 
-            contracts.forEach(function(contract) {
-                map[contract._id] = contract;
-            })
- 
-            res.send(map);
+     app.get('/api/getcontracts', async(req,res) =>{
+       const contractt = await Contract.find() 
+        res.send(ontractt);
         })
-     });
+     
 
         //DELETE project by Id
         app.delete('/api/deleteproject', async (req,res) =>{
@@ -192,14 +161,28 @@ module.exports = (app) => {
 
         //DELETE job by Id
         app.delete('/api/deletejob', async (req,res) =>{
-            const id = req.query.id;
-          
-           const job= await JobAd.findByIdAndDelete(id);
-            if(!job) return res.status(400).send('not found');
-            res.send("Deleted !");
+                const id = req.query.id;
+                const job= await JobAd.findByIdAndDelete(id);
+                if(!job) return res.status(400).send('not found');
+                res.send("Deleted !");
         });
 
-         
+        app.put('/api/put/project', async(req,res)=>{
+           const projectt = await Project.updateOne({ '_id' : req.body.id },{
+               $set: { 
+                projectName: req.body.projectName,
+                projectDescription : req.body.projectDescription,  
+               } 
+             
+            });
+            res.status(200).send("goood"); 
+        });
+        
+            
+            
+     
+          
+
 
         
 }

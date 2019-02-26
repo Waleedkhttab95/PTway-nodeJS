@@ -31,30 +31,18 @@ module.exports = (app) => {
 
       // Get all countres
 
-      app.get('/api/getcountry', (req,res) =>{
+      app.get('/api/getcountry', async(req,res) =>{
          
-        Country.find({}, function(error,countres) {
-            var map = {};
- 
-            countres.forEach(function(country) {
-                map[country._id] = country;
-            })
- 
-            res.send(map);
+        const Con = await Country.find()
+        res.send(Con);
         })
-     });
+
 
         // Get all city
 
-        app.get('/api/getcity', (req,res) =>{
-            City.find({}, function(error,result) {
-                var map = {};
-     
-                result.forEach(function(city) {
-                    map[city._id] = city;
-                })
-     
-                res.send(map);
+        app.get('/api/getcity', async (req,res) =>{
+            const cityy = await City.find();
+            res.send(cityy);
             })
-         });
+        
 }

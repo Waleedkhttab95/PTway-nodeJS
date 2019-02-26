@@ -129,6 +129,41 @@ module.exports = (app) =>{
         })
         
     })
+    app.post('/api/end/job', async (req,res) =>{
+     
+        Date.daysBetween = function( date1, date2 ) {
+            //Get 1 day in milliseconds
+            var one_day=1000*60*60*24;
+          
+            // Convert both dates to milliseconds
+            var date1_ms = date1.getTime();
+            var date2_ms = date2.getTime();
+          
+            // Calculate the difference in milliseconds
+            var difference_ms = date2_ms - date1_ms;
+              
+            // Convert back to days and return
+            return Math.round(difference_ms/one_day); 
+          }
+          
+          const start_day = await JobAd.findById(req.body.jobAd_id);
+          
+          //Set the two dates
+          var startD  = new Date(start_day.startDate); 
+          var calcDate = new Date(startD.getFullYear() , startD.getMonth()-1, startD.getDate());
+          var today= new Date();
 
+          var endDate =  Date.daysBetween(calcDate, today);
+
+          const workHours = start_day.work_hours * endDate ; 
+
+          const current_user = await UserInfo.findOne({'user' : req.body.user});
+
+          current_user.work_Hours += workHours;
+          current_user.save();
+        
+          res.status(200).send("updated !");
+
+    })
  
 }

@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 
 const user_infoSchema = new Schema({
     user : {type: mongoose.Schema.Types.ObjectId, ref:'users', required:true},
-
+    key : {type:String},
     work_Hours: {
         type: Number,
         default: 0

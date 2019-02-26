@@ -5,6 +5,7 @@ const keys = require('../../config/keys');
 const {Schema} = mongoose;
 
 const userSchema = new Schema({
+key : {type:String},
 googleId: String,
 firstName: {
     type:String,

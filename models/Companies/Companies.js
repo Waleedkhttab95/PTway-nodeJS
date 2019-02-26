@@ -5,7 +5,7 @@ const keys = require('../../config/keys');
 const {Schema} = mongoose;
 
 const companySchema = new Schema({
-
+key : {type:String},
 companyName: {
     type:String,
     required: true,

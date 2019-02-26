@@ -26,12 +26,12 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 require('./routes/authRoutes')(app);
 require('./routes/Registretion')(app);
 require('./routes/Companies')(app);
 require('./routes/Country_City')(app);
 require('./routes/Information')(app);
+require('./routes/admin')(app);
 require('./routes/Services')(app);
 require('./services/updateResume')();
 

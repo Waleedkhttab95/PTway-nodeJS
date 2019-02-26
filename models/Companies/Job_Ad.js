@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const adSchema = new Schema({
-
+   key : {type:String},
    contract: {type: mongoose.Schema.Types.ObjectId, ref:'Contracts', required:true},
    project: {type: mongoose.Schema.Types.ObjectId, ref:'Projects'},
    job_Name: {type: String , required:true},
