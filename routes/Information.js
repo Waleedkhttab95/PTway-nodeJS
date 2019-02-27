@@ -87,7 +87,7 @@ module.exports = (app) => {
           imPath= url + "/images/" + req.file.filename
         }
 
-        const info = await UserInfo.updateOne({ 'user': id },
+        const info = await UserInfo.updateOne({ 'user': req.user.id ,'_id':id },
             {
                 $set: {
                     country: req.body.country,
@@ -128,7 +128,7 @@ module.exports = (app) => {
           imPath= url + "/images/" + req.file.filename
         }
 
-        const companyId = await CompanyInfo.updateOne({'company': id },
+        const companyId = await CompanyInfo.updateOne({'company': req.user.id ,'_id': id},
             {
                 
                 $set: {

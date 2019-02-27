@@ -168,7 +168,7 @@ module.exports = (app) => {
         });
 
         app.put('/api/put/project', async(req,res)=>{
-           const projectt = await Project.updateOne({ '_id' : req.body.id },{
+           const projectt = await Project.updateOne({ '_id' : req.body.id},{
                $set: { 
                 projectName: req.body.projectName,
                 projectDescription : req.body.projectDescription,  
