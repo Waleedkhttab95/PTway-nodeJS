@@ -1,6 +1,6 @@
 const {Company} = require('../models/Companies/Companies');
-module.exports = app =>{
 
+module.exports = (app) =>{
 
 app.put('/api/companyApproval',async(req,res)=>{
 

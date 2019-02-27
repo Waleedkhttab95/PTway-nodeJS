@@ -97,8 +97,8 @@ module.exports = (app) => {
        // Get all jobs Ad 
 
        app.get('/api/getjobs', async(req,res) =>{
-           const jobAdd = await JobAd.find();
-            res.send(jobAdd);
+           const jobs = await JobAd.find();
+            res.send(jobs);
         })
  
 
@@ -146,7 +146,7 @@ module.exports = (app) => {
 
      app.get('/api/getcontracts', async(req,res) =>{
        const contractt = await Contract.find() 
-        res.send(ontractt);
+        res.send(contractt);
         })
      
 
