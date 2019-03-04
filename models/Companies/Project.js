@@ -4,6 +4,7 @@ const {Schema} = mongoose;
 
 const projectSchema = new Schema({
 key : {type:String},
+company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
 projectName : {type: String , required:true},
 projectDescription : {type:String, required: true},
 status : {type: Boolean , default: true},

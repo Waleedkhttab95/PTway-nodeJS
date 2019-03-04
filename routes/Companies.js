@@ -50,7 +50,7 @@ module.exports = (app) => {
             new Project({
                 projectName: req.body.projectName,
                 projectDescription : req.body.projectDescription,
-                
+                company: req.body.companyId
 
             }).save()
             .then(result =>{
@@ -86,8 +86,8 @@ module.exports = (app) => {
           // Get all projects
 
      app.get('/api/getprojects', async(req,res) =>{
-         
-        const proj = await Project.find();
+        const id=  req.query.id 
+        const proj = await Project.find({company : id});
        const projectNames = proj.map(x => x.projectName);
        const projectId = proj.map(x => x._id);
 
