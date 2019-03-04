@@ -88,11 +88,13 @@ module.exports = (app) => {
      app.get('/api/getprojects', async(req,res) =>{
          
         const proj = await Project.find();
+       const projectNames = proj.map(x => x.projectName);
+       const projectId = proj.map(x => x._id);
 
             res.status(200).json({
-                projectName: proj[0].projectName,
+                projectName: projectNames,
                 count : proj.length,
-                id: proj[0]._id
+                id: projectId
             });
         });
     
