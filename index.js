@@ -1,17 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const error = require('./middleware/error');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
+require('express-async-errors');
 
 
 
 require('./models/Users/User');
 require('./services/passport');
 
- mongoose.connect(keys.mongoURI)
+mongoose.connect(keys.mongoURI)
 const app = express();
-
 app.use(express.json());
 app.use(
   cookieSession({
@@ -55,5 +56,6 @@ app.use((req, res, next) => {
 
   next();
 });
+app.use(error);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

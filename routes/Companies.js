@@ -33,13 +33,12 @@ module.exports = (app) => {
     // Get all sectors
 
     app.get('/api/getsectors', async(req,res) =>{
-        
         const sectors = await Sector.find();
-           res.status(200).send(sectors);
-       })
+           res.status(200).send(sectors);       
+       });
     
 
-     // Get all specialization
+     // Get all specializzation
 
      app.get('/api/getspec', async(req,res) =>{
         const Cs = await CompanySpecialist.find();
