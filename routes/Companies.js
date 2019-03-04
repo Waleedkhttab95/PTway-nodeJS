@@ -88,7 +88,12 @@ module.exports = (app) => {
      app.get('/api/getprojects', async(req,res) =>{
          
         const proj = await Project.find();
-            res.send(proj);
+
+            res.status(200).json({
+                projectName: proj[0].projectName,
+                count : proj.length,
+                id: proj[0]._id
+            });
         });
     
 
