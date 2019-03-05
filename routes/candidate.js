@@ -17,6 +17,12 @@ app.get('/api/getCandites',async (req,res)=>{
 app.get('/api/getOneCandi',async(req,res)=>{
 const Bresult = await Candidate.find({'jobAd':req.query.jobAd})
 if (!Bresult) return res.status(401).send('notFound')
-res.send(Bresult);
+const candidateNames = Bresult.map(x => x.candidateName);
+const ids = Bresult.map(x=> x._id);
+res.status(200).json({
+  candidateNames: candidateNames,
+  id: ids,
+  count : Bresult.length
+});
 });
 }//endofapp
