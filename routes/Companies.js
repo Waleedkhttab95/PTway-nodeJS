@@ -113,7 +113,11 @@ module.exports = (app) => {
             const id = req.query.id;
            const project= await Project.findById(id);
             if(!project) return res.status(401).send('not found');
-            res.send(project);
+            res.status(200).json({
+                projectName: project.projectName,
+                projectDescription : project.projectDescription,
+                id: project._d
+            });
         });
 
         
@@ -132,11 +136,11 @@ module.exports = (app) => {
           
            const job= await JobAd.find({project: id});
             if(!job) return res.status(401).send('not found');
-            const jobNames = job.map(x => x.job_Name);
+            const jobName = job.map(x => x.job_Name);
             const jobId = job.map(x => x._id);
 
             res.status(200).json({
-                jobNames: jobNames,
+                jobNames: jobName,
                 count : job.length,
                 id: jobId
             });
@@ -188,7 +192,7 @@ module.exports = (app) => {
                } 
              
             });
-            res.status(200).send("goood"); 
+            res.status(200).send("Done ."); 
         });
         
             
