@@ -132,7 +132,14 @@ module.exports = (app) => {
           
            const job= await JobAd.find({project: id});
             if(!job) return res.status(401).send('not found');
-            res.send(job);
+            const jobNames = job.map(x => x.job_Name);
+            const jobId = job.map(x => x._id);
+
+            res.status(200).json({
+                jobNames: jobNames,
+                count : job.length,
+                id: jobId
+            });
         });
         //Post Contract
 
