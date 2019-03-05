@@ -34,6 +34,9 @@ require('./routes/Country_City')(app);
 require('./routes/Information')(app);
 require('./routes/admin')(app);
 require('./routes/Services')(app);
+require('./routes/candidate')(app);
+require('./routes/Accept')(app);
+require('./routes/term')(app);
 require('./services/updateResume')();
 
 
