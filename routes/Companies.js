@@ -191,8 +191,9 @@ module.exports = (app) => {
                 projectDescription : req.body.projectDescription,  
                } 
              
+            }).then(result =>{
+                      res.status(200).send("Done ."); 
             });
-            res.status(200).send("Done ."); 
         });
         
             
