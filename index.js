@@ -37,6 +37,7 @@ require('./routes/Services')(app);
 require('./routes/candidate')(app);
 require('./routes/Accept')(app);
 require('./routes/term')(app);
+require('./routes/User')(app);
 require('./services/updateResume')();
 
 
