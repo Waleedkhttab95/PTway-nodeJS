@@ -6,6 +6,8 @@ const {JobAd} = require('../models/Companies/Job_Ad');
 const {Contract} = require('../models/Companies/Contract');
 const auth = require('../middleware/auth');
 const dateTime = require('node-datetime');
+const {Accepted } = require('../models/Companies/Accepted');
+
 
 
 module.exports = (app) =>{
@@ -161,7 +163,7 @@ module.exports = (app) =>{
 
           current_user.work_Hours += workHours;
           current_user.save();
-        
+          const deleteAccepted = await Accepted.findOneAndDelete({'acceptedName' : req.body.user, 'jobAd': req.body.jobAd_id});
           res.status(200).send("updated !");
 
     })

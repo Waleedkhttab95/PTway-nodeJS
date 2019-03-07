@@ -21,7 +21,7 @@ const adSchema = new Schema({
    startDate: {type: Date, required:true},
   // languages: {type:String,required:true},
   // job_Responsibility: {type:String,required:true},
-   personal_Skills: {type: mongoose.Schema.Types.ObjectId, ref:'Skills'},
+   personal_Skills: {type: String, required: true},
    required_Number:{type:Number,required:true},
   // start_Date: {type: Date, required: true},
   // age_From : {type:Number,required:true},
