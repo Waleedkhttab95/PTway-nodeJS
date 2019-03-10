@@ -41,26 +41,31 @@ module.exports = (app) => {
 
     //post company information
     app.post('/api/postcompanyinfo', auth, (req, res) => {
+        console.log("1");
         const url = req.protocol + '://' + req.get("host");     
-
-        new CompanyInfo({
-            company: req.user._id,
-            country: req.body.country,
-            address: req.body.address,
-            info: req.body.info,
-            imagePath: url + "/images/" + req.file.filename,
-            vision: req.body.vision,
-            message: req.body.message,
-            city: req.body.city,
-            personal_web: req.body.personal_web,
-            facebook: req.body.facebook,
-            twitter: req.body.twitter,
-            instagram: req.body.instagram,
-            linkedin: req.body.linkedin,
-        }).save()
-            .then(company => {
-                res.send(company);
-            });
+        try{
+            new CompanyInfo({
+                company: req.user._id,
+                country: req.body.country,
+                address: req.body.address,
+                info: req.body.info,
+                //imagePath: url + "/images/" + req.file.filename,
+                vision: req.body.vision,
+                message: req.body.message,
+                city: req.body.city,
+                personal_web: req.body.personal_web,
+                facebook: req.body.facebook,
+                twitter: req.body.twitter,
+                instagram: req.body.instagram,
+                linkedin: req.body.linkedin,
+            }).save()
+                .then(company => {
+                    res.send(company);
+                });
+        } catch(ex) {
+            console.log(ex)
+        }
+      
     })
 
     //Get user info by ID
