@@ -2,6 +2,7 @@ const {Sector} = require('../models/Companies/Sector');
 const {CompanySpecialist} = require('../models/Companies/CompanySpecialist');
 const {Project} = require('../models/Companies/Project');
 const {JobAd} = require('../models/Companies/Job_Ad');
+const auth = require('../middleware/auth');
 const {Contract} = require('../models/Companies/Contract');
 module.exports = (app) => {
 
@@ -46,7 +47,7 @@ module.exports = (app) => {
      });
 
      // POST PROJECT 
-        app.post('/api/postproject', (req,res) =>{
+        app.post('/api/postproject',auth, (req,res) =>{
             new Project({
                 projectName: req.body.projectName,
                 projectDescription : req.body.projectDescription,
@@ -85,7 +86,7 @@ module.exports = (app) => {
 
           // Get all projects
 
-     app.get('/api/getprojects', async(req,res) =>{
+     app.get('/api/getprojects',auth, async(req,res) =>{
         const id=  req.user._id;
         const proj = await Project.find({company : id});
        const projectNames = proj.map(x => x.projectName);
