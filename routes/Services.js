@@ -59,7 +59,7 @@ module.exports = (app) =>{
     // Get all notifications ..
 
     app.get('/api/get/allnotifications', async (req,res) =>{
-        const userId = req.query.userId;
+      //  const userId = req.query.userId;
 
         const notifications = await Notification
         .find({user: req.user._id})
@@ -93,16 +93,26 @@ module.exports = (app) =>{
         const lastNotification = await Notification
         .find({user : req.user._id}).sort({date: -1}).limit(5);
 
-        res.send(lastNotification);
+        const ids = lastNotification.map(x=> x.content);
+        const contents = [];
+        for(var i = 0 ; i < lastNotification.length ; i++) {
+    
+            const content = await JobAd.findById( lastNotification[i].content).select("job_Name -_id");
+            contents.push(content);
+          }
+
+        res.status(200).json({
+            content: contents,
+            id: ids
+        });
     })
 
     // unread notificatoion
     app.get('/api/get/unread/notification',auth, async (req,res) =>{
         //const userId = req.query.userId;
-
-        const count = await Notification
-        .find({user: req.user._id, isRead: false}).countDocuments();
-
+        console.log(req.user._id);
+        const count = await Notification.find({'user':req.user._id, 'isRead' : false})
+        console.log(count);
         res.status(200).json({
             count: count
         })

@@ -10,11 +10,11 @@ module.exports = (app) => {
     app.post('/api/postuserinfo', (req, res) => {
         const url = req.protocol + '://' + req.get("host");     
         new UserInfo({
-            user: req.body.user,
+            user: req.user._id,
             country: req.body.country,
             study_status: req.body.study_status,
             study_degree: req.body.study_degree,
-            imagePath: url + "/images/" + req.file.filename,
+           // imagePath: url + "/images/" + req.file.filename,
             education_degree: req.body.education_degree,
             gender: req.body.gender,
             mobile: req.body.mobile,
