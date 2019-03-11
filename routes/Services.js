@@ -62,7 +62,7 @@ module.exports = (app) =>{
         const userId = req.query.userId;
 
         const notifications = await Notification
-        .find({user: userId})
+        .find({user: req.user._id})
         .select('-user');
 
 
@@ -88,20 +88,20 @@ module.exports = (app) =>{
     // Get last 4 notification
 
     app.get('/api/get/lastnotifcation', async (req,res) =>{
-        const userId = req.query.userId;
+        //const userId = req.query.userId;
 
         const lastNotification = await Notification
-        .find({user : userId}).sort({date: -1}).limit(5);
+        .find({user : req.user._id}).sort({date: -1}).limit(5);
 
         res.send(lastNotification);
     })
 
     // unread notificatoion
     app.get('/api/get/unread/notification', async (req,res) =>{
-        const userId = req.query.userId;
+        //const userId = req.query.userId;
 
         const count = await Notification
-        .find({user: userId, isRead: false}).count();
+        .find({user: req.user._id, isRead: false}).count();
 
         res.send(count);
 

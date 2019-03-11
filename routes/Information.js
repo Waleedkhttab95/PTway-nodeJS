@@ -2,6 +2,8 @@ const { UserInfo } = require('../models/Users/User_Info');
 const { CompanyInfo } = require('../models/Companies/Company_Info');
 const auth = require('../middleware/auth');
 const file = require('../middleware/file');
+const {City} = require('../models/Shared/City');
+const {Country} = require('../models/Shared/Country');
 
 module.exports = (app) => {
     //post user information
@@ -73,7 +75,36 @@ module.exports = (app) => {
         const id = req.query.id;
         const info = await UserInfo.findOne({ 'user': id });
         if (!info) return res.status(401).send('not found');
-        res.send(info);
+
+        const country = await Country.findById(info.country);
+        const city = await City.findById(info.city);
+
+
+        res.status(200).json({
+            country: country.countryName,
+             study_status: info.study_status,
+            study_degree: info.study_degree,
+            //imagePath: url + "/images/" + req.file.filename,
+            education_degree: info.education_degree,
+            gender: info.gender,
+            mobile: info.mobile,
+            birthDate: info.birthDate,
+            city: city.cityName,
+            Education_level: info.Education_level,
+            public_Major:info.public_Major,
+            spicifc_Major: info.spicifc_Major,
+            languages: info.languages,
+            skills: info.skills,
+            personal_Skills: info.personal_Skills,
+            hoppies: info.hoppies,
+            social_Status: info.social_Status,
+            about: info.about,
+            personal_web: info.personal_web,
+            facebook: info.facebook,
+            twitter: info.twitter,
+            instagram: info.instagram,
+            linkedin: info.linkedin,
+        });
     })
 
     //Get company info by CompanyID
