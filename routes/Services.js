@@ -111,7 +111,8 @@ module.exports = (app) =>{
     app.get('/api/get/unread/notification',auth, async (req,res) =>{
         //const userId = req.query.userId;
         console.log(req.user._id);
-        const count = await Notification.find({'user':req.user._id, 'isRead' : false})
+        const count = await Notification
+        .find({"user": req.user._id, "isRead": false}).countDocuments();
         console.log(count);
         res.status(200).json({
             count: count
