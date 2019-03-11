@@ -102,7 +102,7 @@ module.exports = (app) =>{
 
         const count = await Notification
         .find({user: req.user._id, isRead: false}).count();
-
+        if(!count) count = 0;
         res.send(count);
 
     })
