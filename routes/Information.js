@@ -72,8 +72,8 @@ module.exports = (app) => {
 
     //Get user info by ID
     app.get('/api/getuserinfo', auth, async (req, res) => {
-        const id = req.query.id;
-        const info = await UserInfo.findOne({ 'user': id });
+        //const id = req.query.id;
+        const info = await UserInfo.findOne({ 'user': req.user._id });
         if (!info) return res.status(401).send('not found');
 
         const country = await Country.findById(info.country);
