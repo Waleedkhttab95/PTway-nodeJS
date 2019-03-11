@@ -52,9 +52,8 @@ module.exports = (app) =>{
      // for company 
 
      app.post('/api/com_login', async (req, res) => {
-        
-        const {error} = validateCompany(req.body);
-        if(error) return res.status(400).send(error.details[0].message);
+        // const {error} = validateCompany(req.body);
+        // if(error) return res.status(400).send(error.details[0].message);
         
 
       let company = await  Company.findOne({email: req.body.email});
@@ -64,7 +63,10 @@ module.exports = (app) =>{
 
         if (!result) return res.status(400).send('Invalid email or password');
       const token = company.generateAuthToken();
-        res.send(token);
+      res.status(200).json({
+        token: token,
+        userId: company._id
+        });;
        });
        
      });
