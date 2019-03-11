@@ -71,7 +71,7 @@ module.exports = (app) =>{
    
     // Get spicific notification ..
 
-    app.get('/api/get/notification', async (req,res) =>{
+    app.get('/api/get/notification',auth, async (req,res) =>{
         const notiId = req.query.notiId;
 
         const result = await Notification
@@ -87,7 +87,7 @@ module.exports = (app) =>{
 
     // Get last 4 notification
 
-    app.get('/api/get/lastnotifcation', async (req,res) =>{
+    app.get('/api/get/lastnotifcation',auth, async (req,res) =>{
         //const userId = req.query.userId;
 
         const lastNotification = await Notification
@@ -97,13 +97,15 @@ module.exports = (app) =>{
     })
 
     // unread notificatoion
-    app.get('/api/get/unread/notification', async (req,res) =>{
+    app.get('/api/get/unread/notification',auth, async (req,res) =>{
         //const userId = req.query.userId;
 
         const count = await Notification
-        .find({user: req.user._id, isRead: false}).count();
-        if(!count) count = 0;
-        res.send(count);
+        .find({user: req.user._id, isRead: false}).countDocuments();
+
+        res.status(200).json({
+            count: count
+        })
 
     })
 
