@@ -18,12 +18,11 @@ const adSchema = new Schema({
    work_days: {type:String},
    salary: {type:String, required:true},
    gender: {type:String,required:true},  
-   startDate: {type: Date, required:true},
   // languages: {type:String,required:true},
   // job_Responsibility: {type:String,required:true},
    personal_Skills: {type: String, required: true},
    required_Number:{type:Number,required:true},
-  // start_Date: {type: Date, required: true},
+   start_Date: {type: Date, required: true},
   // age_From : {type:Number,required:true},
   // age_To : {type:Number,required:true}
 });

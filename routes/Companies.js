@@ -4,6 +4,9 @@ const {Project} = require('../models/Companies/Project');
 const {JobAd} = require('../models/Companies/Job_Ad');
 const auth = require('../middleware/auth');
 const {Contract} = require('../models/Companies/Contract');
+const {City} = require('../models/Shared/City');
+const {Country} = require('../models/Shared/Country');
+
 module.exports = (app) => {
 
     // Add Company Sector
@@ -70,7 +73,7 @@ module.exports = (app) => {
                 country: req.body.country,
                 city: req.body.city,
                 public_Major: req.body.public_Major,
-                startDate: req.body.startDate,
+                start_Date: req.body.startDate,
                 work_hours: req.body.work_hours,
                 work_days: req.body.work_days,
                 salary: req.body.salary,
@@ -128,7 +131,16 @@ module.exports = (app) => {
           
            const job= await JobAd.findById(id);
             if(!job) return res.status(401).send('not found');
-            res.send(job);
+            const countres = await Country.findById(job.country);
+            const cites = await City.findById(job.city);
+            const contract = await Contract.findById(job.contract);
+
+            res.status(200).json({
+                job: job,
+                Country: countres.countryName,
+                City: cites.cityName,
+                Contract: contract.contractName
+            });
         });
 
         // get job by project

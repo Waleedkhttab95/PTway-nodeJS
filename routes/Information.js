@@ -7,7 +7,7 @@ const {Country} = require('../models/Shared/Country');
 
 module.exports = (app) => {
     //post user information
-    app.post('/api/postuserinfo', (req, res) => {
+    app.post('/api/postuserinfo',auth, (req, res) => {
         const url = req.protocol + '://' + req.get("host");     
         new UserInfo({
             user: req.user._id,

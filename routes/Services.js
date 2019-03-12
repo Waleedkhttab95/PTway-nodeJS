@@ -96,7 +96,7 @@ module.exports = (app) =>{
         const ids = lastNotification.map(x=> x.content);
         const contents = [];
         for(var i = 0 ; i < lastNotification.length ; i++) {
-    
+            console.log(lastNotification[i].content);
             const content = await JobAd.findById( lastNotification[i].content).select("job_Name -_id");
             contents.push(content);
           }
