@@ -3,6 +3,8 @@ const { CompanyInfo } = require('../models/Companies/Company_Info');
 const auth = require('../middleware/auth');
 const file = require('../middleware/file');
 const {City} = require('../models/Shared/City');
+const {spMajor} = require('../models/Shared/SpMajor');
+const {publicMajor} = require('../models/Shared/Public_Major');
 const {Country} = require('../models/Shared/Country');
 
 module.exports = (app) => {
@@ -14,6 +16,7 @@ module.exports = (app) => {
             country: req.body.country,
             study_status: req.body.study_status,
             study_degree: req.body.study_degree,
+            fullName: req.body.fullName,
            // imagePath: url + "/images/" + req.file.filename,
             education_degree: req.body.education_degree,
             gender: req.body.gender,
@@ -78,7 +81,8 @@ module.exports = (app) => {
 
         const country = await Country.findById(info.country);
         const city = await City.findById(info.city);
-
+        const cpublic_Major = await publicMajor.findById(info.public_Major);
+        const cspicifc_Major = await spMajor.findById(info.spicifc_Major);
 
         res.status(200).json({
             country: country.countryName,
@@ -91,8 +95,8 @@ module.exports = (app) => {
             birthDate: info.birthDate,
             city: city.cityName,
             Education_level: info.Education_level,
-            public_Major:info.public_Major,
-            spicifc_Major: info.spicifc_Major,
+            public_Major: cpublic_Major.majorName,
+            spicifc_Major: cspicifc_Major.majorName,
             languages: info.languages,
             skills: info.skills,
             personal_Skills: info.personal_Skills,

@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-
+const {schema} = require('../Shared/Public_Major');
 const {Schema} = mongoose;
 
 const user_infoSchema = new Schema({
     user : {type: mongoose.Schema.Types.ObjectId, ref:'users', required:true},
     key : {type:String},
+    fullName: {type:String},
     work_Hours: {
         type: Number,
         default: 0
@@ -51,18 +52,10 @@ const user_infoSchema = new Schema({
         required:true
       
     },
-    public_Major: {
-        type:String,
-        required:true
-      
-    },
     
-    spicifc_Major: {
-        type:String,
-        required:true
-      
-    },
-    
+    public_Major: {type: mongoose.Schema.Types.ObjectId, ref:'Public_Major'},
+
+    spMajor: {type: mongoose.Schema.Types.ObjectId, ref:'SpMajor'},
     languages: {
         type:String,
         required:true
@@ -84,6 +77,10 @@ const user_infoSchema = new Schema({
         required:true
       
     },
+    universty: {
+        type: mongoose.Schema.Types.ObjectId, ref:'Universty'
+    },
+    companies: [{ type: mongoose.Schema.Types.ObjectId, ref:'companies'}],
     social_Status: {
         type:String,
         required:true
